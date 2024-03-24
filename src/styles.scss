@@ -1,6 +1,7 @@
 @mixin before {
   line-height: 1;
   padding-top: 2px;
+  margin-top: 3px;
 }
 @mixin whitespace {
   white-space: pre;
@@ -18,17 +19,120 @@
   .cm-highlightSpace:not(.cm-indent .cm-highlightSpace) {
     @include whitespace;
   }
-  .cm-highlightSpace:not(.cm-indent .cm-highlightSpace):not(.cm-trailingSpace .cm-highlightSpace):before {
-    content: '∙';
+  .cm-highlightSpace:before {
+    content: attr(data-display);
+    margin-top: 3px;
+    @include before;
+  }
+
+  .cm-indent-spacing .cm-highlightSpace[data-display$="·"]:before {
+    // content: attr(data-display);
+    content: "·";
+    margin-top: 3px;
+    @include before;
+  }
+  .cm-indent-spacing .cm-highlightSpace[data-display$="··"]:before {
+    // content: attr(data-display);
+    content: "··";
+    margin-top: 3px;
+    @include before;
+  }
+  .cm-indent-spacing .cm-highlightSpace[data-display$="···"]:before {
+    // content: attr(data-display);
+    content: "···";
+    margin-top: 3px;
+    @include before;
+  }
+
+  .cm-indent-spacing .cm-highlightSpace[data-display$="·····"]:before {
+    // content: attr(data-display);
+    content: "·";
+    margin-top: 3px;
+    @include before;
+  }
+  .cm-indent-spacing .cm-highlightSpace[data-display$="······"]:before {
+    // content: attr(data-display);
+    content: "··";
+    margin-top: 3px;
+    @include before;
+  }
+  .cm-indent-spacing .cm-highlightSpace[data-display$="·······"]:before {
+    // content: attr(data-display);
+    content: "···";
+    margin-top: 3px;
+    @include before;
+  }
+
+  .cm-indent-spacing .cm-highlightSpace[data-display$="·········"]:before {
+    // content: attr(data-display);
+    content: "·";
+    margin-top: 3px;
+    @include before;
+  }
+  .cm-indent-spacing .cm-highlightSpace[data-display$="··········"]:before {
+    // content: attr(data-display);
+    content: "··";
+    margin-top: 3px;
+    @include before;
+  }
+  .cm-indent-spacing .cm-highlightSpace[data-display$="···········"]:before {
+    // content: attr(data-display);
+    content: "···";
+    margin-top: 3px;
+    @include before;
+  }
+
+  .cm-indent-spacing .cm-highlightSpace[data-display$="·············"]:before {
+    // content: attr(data-display);
+    content: "·";
+    margin-top: 3px;
+    @include before;
+  }
+  .cm-indent-spacing .cm-highlightSpace[data-display$="··············"]:before {
+    // content: attr(data-display);
+    content: "··";
+    margin-top: 3px;
+    @include before;
+  }
+  .cm-indent-spacing .cm-highlightSpace[data-display$="···············"]:before {
+    // content: attr(data-display);
+    content: "···";
+    margin-top: 3px;
+    @include before;
+  }
+  .cm-indent-spacing .cm-highlightSpace[data-display$="·················"]:before {
+    // content: attr(data-display);
+    content: "·";
+    margin-top: 3px;
+    @include before;
+  }
+  .cm-indent-spacing .cm-highlightSpace[data-display$="··················"]:before {
+    // content: attr(data-display);
+    content: "··";
+    margin-top: 3px;
+    @include before;
+  }
+  .cm-indent-spacing .cm-highlightSpace[data-display$="···················"]:before {
+    // content: attr(data-display);
+    content: "···";
+    margin-top: 3px;
     @include before;
   }
 }
+
+
 .theme-dark {
   --swcm6-outline-list-markers-color: rgba(var(--mono-rgb-100), 0.05);
 }
 .theme-light {
   --swcm6-outline-list-markers-color: rgba(var(--mono-rgb-100), 0.03);
 }
+
+.cm-hmd-list-indent .cm-highlightTab{
+  background: none;
+}
+
+
 
 body:not(.swcm6-nix-plugin-styles) {
   --show-whitespace-color: var(--color-base-40);
@@ -44,41 +148,55 @@ body:not(.swcm6-nix-plugin-styles) {
       border-right: var(--blockquote-border-thickness) solid var(--blockquote-border-color);
     }
 
+
     .cm-line {
+      .cm-trailing-space-a .cm-trailingSpace .cm-highlightSpace:before {
+        content: "·";
+        @include before;
+      }
+
+      .cm-trailing-space-b .cm-trailingSpace .cm-highlightSpace:before {
+        content: "·";
+        @include before;
+      }
+
+      .cm-trailing-space-new-line .cm-trailingSpace .cm-highlightSpace:before {
+        content: "·";
+        @include before;
+      }
+
+      .cm-indent-spacing .cm-trailingSpace .cm-highlightSpace:before {
+        content: "·";
+        @include before;
+      }
+
       .cm-highlightSpace:before {
         color: var(--show-whitespace-color);
       }
-      .cm-indent:has(.cm-highlightSpace)::before {
-        transform: unset;
-      }
+
       .cm-indent,
       .cm-trailingSpace {
         @include whitespace;
       }
       .cm-indent .cm-highlightSpace[data-display$="····"]:before {
         content: '····';
+        bottom: 3px;
       }
-      &:has(span):not(:has(.cm-trailing-space-new-line)):not(:has(.cm-trailingSpace)):after {
+
+      &:not(:has(br)):not(:has(.cm-trailing-space-new-line)):not(:has(.cm-trailingSpace)):after {
         color: var(--show-whitespace-color);
         content: '¬';
         padding-left: 0.2ch;
         @include line-ending;
       }
-      .cm-trailing-space-a .cm-highlightSpace:before {
-        content: attr(data-display);
-        @include before;
-      }
+
       .cm-trailingSpace .cm-highlightSpace:before {
         content: attr(data-display);
         @include before;
       }
       .cm-hmd-codeblock:last-child,
       .cm-trailing-space-new-line {
-        .cm-trailingSpace:has(.cm-highlightSpace[data-display$="··"]) {
-          // stuff
-          .cm-highlightSpace:not(.cm-hmd-codeblock .cm-trailingSpace .cm-highlightSpace):before {
-            content: '';
-          }
+        .cm-trailingSpace:has(.cm-highlightSpace[data-display$=""]) {
           .cm-highlightSpace:after {
             content: '↲';
             @include line-ending;
